@@ -12,7 +12,7 @@ const ArticleList = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios({
-        url: `https://api.nordot.jp/v1.0/curator/curations.list`,
+        url: `v1.0/curator/curations.list`,
         method: `get`,
         headers: {
           Authorization: `Bearer ${nordotApiToken}`,

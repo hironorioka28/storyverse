@@ -27,7 +27,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:lambda": "netlify-lambda serve src/lambda",
     "build": "react-scripts build",
+    "build:lambda": "netlify-lambda build src/lambda",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
@@ -73,5 +75,6 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "all"
-  }
+  },
+  "proxy": "https://api.nordot.jp"
 }
