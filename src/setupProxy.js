@@ -4,8 +4,7 @@ module.exports = function(app) {
   app.use(
     "/.netlify/functions/",
     createProxyMiddleware({
-      //target: "http://localhost:9000",
-      target: "https://storyverse.netlify.app",
+      target: "http://localhost:9000",
       changeOrigin: true
     })
   )
