@@ -73,6 +73,5 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "all"
-  },
-  "proxy": "https://api.nordot.jp"
+  }
 }
