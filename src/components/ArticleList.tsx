@@ -1,41 +1,49 @@
-//import { useState } from 'react'
-import { Box } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
+import { Heading, VStack, Box, Text, Image } from '@chakra-ui/react'
 import { MasonryGrid } from '@egjs/react-grid'
+import axios from 'axios'
+import { Curation } from '../apis/types'
 
 const ArticleList = (): JSX.Element => {
+  const [curations, setCurations] = useState<Curation[]>()
+  const nordotApiToken = process.env.REACT_APP_NORDOT_API_TOKEN
+  const nordotUnitId = process.env.REACT_APP_BEAUTY_UNIT_ID
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios({
+        url: `v1.0/curator/curations.list`,
+        method: `get`,
+        headers: {
+          Authorization: `Bearer ${nordotApiToken}`,
+        },
+        params: {
+          unit_id: nordotUnitId,
+          status: `public`,
+          limit: 100,
+        },
+      })
+      setCurations(response.data.curations)
+    }
+
+    fetchData()
+  }, [nordotApiToken, nordotUnitId])
+
   return (
-    <Box w="2xl">
+    <Box w="8xl">
       <MasonryGrid gap={5} defaultDirection="end" align="justify">
-        <Box w={100} h={80} border="1px">
-          1
-        </Box>
-        <Box w={100} h={100} border="1px">
-          2
-        </Box>
-        <Box w={100} h={60} border="1px">
-          3
-        </Box>
-        <Box w={100} h={40} border="1px">
-          4
-        </Box>
-        <Box w={100} h={20} border="1px">
-          5
-        </Box>
-        <Box w={100} h={120} border="1px">
-          6
-        </Box>
-        <Box w={100} h={200} border="1px">
-          7
-        </Box>
-        <Box w={100} h={60} border="1px">
-          8
-        </Box>
-        <Box w={100} h={50} border="1px">
-          9
-        </Box>
-        <Box w={100} h={100} border="1px">
-          10
-        </Box>
+        {curations ? (
+          curations.map((item) => (
+            <Box key={item.id} p={4} w={130} border="1px" borderRadius="base">
+              <VStack>
+                <Image src={item.content.image_thumb_360} w="full" />
+                <Heading fontSize="xs">{item.content.title}</Heading>
+              </VStack>
+            </Box>
+          ))
+        ) : (
+          <Text>Loading...</Text>
+        )}
       </MasonryGrid>
     </Box>
   )
