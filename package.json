@@ -17,6 +17,7 @@
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "framer-motion": "^4",
+    "http-proxy-middleware": "^2.0.1",
     "netlify-lambda": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -75,6 +76,5 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "all"
-  },
-  "proxy": "https://api.nordot.jp"
+  }
 }
