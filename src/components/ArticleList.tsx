@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Heading, VStack, Box, Text, Image } from '@chakra-ui/react'
+import {
+  Heading,
+  VStack,
+  Text,
+  Image,
+  LinkBox,
+  LinkOverlay,
+} from '@chakra-ui/react'
 import { MasonryGrid } from '@egjs/react-grid'
 import axios from 'axios'
 import { Curation } from '../apis/types'
@@ -13,15 +20,6 @@ const ArticleList = (): JSX.Element => {
     const fetchData = async () => {
       const response = await axios({
         url: `/.netlify/functions/curations`,
-        method: `get`,
-        headers: {
-          Authorization: `Bearer ${nordotApiToken}`,
-        },
-        params: {
-          unit_id: nordotUnitId,
-          status: `public`,
-          limit: 100,
-        },
       })
       setCurations(response.data.curations)
     }
@@ -30,22 +28,30 @@ const ArticleList = (): JSX.Element => {
   }, [nordotApiToken, nordotUnitId])
 
   return (
-    <Box w="8xl">
-      <MasonryGrid gap={5} defaultDirection="end" align="justify">
-        {curations ? (
-          curations.map((item) => (
-            <Box key={item.id} p={4} w={130} border="1px" borderRadius="base">
-              <VStack>
-                <Image src={item.content.image_thumb_360} w="full" />
-                <Heading fontSize="xs">{item.content.title}</Heading>
-              </VStack>
-            </Box>
-          ))
-        ) : (
-          <Text>Loading...</Text>
-        )}
-      </MasonryGrid>
-    </Box>
+    <MasonryGrid gap={5} defaultDirection="end" align="justify">
+      {curations ? (
+        curations.map((item) => (
+          <LinkBox key={item.id} p={4} w={130} border="1px" borderRadius="base">
+            <VStack>
+              <Image src={item.content.image_thumb_360} w="full" />
+              <Heading fontSize="xs">
+                {item.content.deleted ? (
+                  <Text href={item.content.url} opacity="0.5">
+                    {item.content.title}
+                  </Text>
+                ) : (
+                  <LinkOverlay href={item.content.url} isExternal>
+                    {item.content.title}
+                  </LinkOverlay>
+                )}
+              </Heading>
+            </VStack>
+          </LinkBox>
+        ))
+      ) : (
+        <Text>Loading...</Text>
+      )}
+    </MasonryGrid>
   )
 }
 

@@ -15,7 +15,7 @@ exports.handler = function(event, context, callback) {
     params: {
       unit_id: nordotUnitId,
       status: `public`,
-      limit: 100,
+      limit: 30,
     },
   }).then(response => {
 		callback(null, {

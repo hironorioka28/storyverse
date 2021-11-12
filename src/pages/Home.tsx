@@ -1,14 +1,14 @@
-import { Box, Heading, Text, Button } from '@chakra-ui/react'
+import { VStack, HStack, Box, Heading, Button } from '@chakra-ui/react'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import ArticleList from '../components/ArticleList'
 
 const Home = (): JSX.Element => {
   return (
     <Box h="100vh">
-      <Heading>Home</Heading>
-      <Text size="lg">Here is Home</Text>
+      <Heading>Story Verse</Heading>
       <TransformWrapper
-        initialScale={1}
+        initialScale={0.1}
+        minScale={0.1}
         // initialPositionX={200}
         // initialPositionY={100}
         centerOnInit
@@ -26,7 +26,24 @@ const Home = (): JSX.Element => {
                 height: 'calc(100% - 40px)',
               }}
             >
-              <ArticleList />
+              <VStack spacing={500}>
+                <HStack spacing={500} p={100}>
+                  <Box w="6xl">
+                    <ArticleList />
+                  </Box>
+                  <Box w="8xl">
+                    <ArticleList />
+                  </Box>
+                </HStack>
+                <HStack spacing={500} p={100}>
+                  <Box w="8xl">
+                    <ArticleList />
+                  </Box>
+                  <Box w="6xl">
+                    <ArticleList />
+                  </Box>
+                </HStack>
+              </VStack>
             </TransformComponent>
           </Box>
         )}
