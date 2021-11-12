@@ -16,9 +16,9 @@ const Home = (): JSX.Element => {
         {({ zoomIn, zoomOut, resetTransform }) => (
           <Box border="1px" h="calc(100% - 80px)">
             <Box>
-              <Button onClick={() => zoomIn()}>+</Button>
-              <Button onClick={() => zoomOut()}>-</Button>
-              <Button onClick={() => resetTransform()}>x</Button>
+              <Button onClick={() => zoomIn()}>Zoom in</Button>
+              <Button onClick={() => zoomOut()}>Zoom out</Button>
+              <Button onClick={() => resetTransform()}>Reset</Button>
             </Box>
             <TransformComponent
               wrapperStyle={{
@@ -29,17 +29,29 @@ const Home = (): JSX.Element => {
               <VStack spacing={500}>
                 <HStack spacing={500} p={100}>
                   <Box w="6xl">
+                    <Heading mb={20} fontSize={250}>
+                      News
+                    </Heading>
                     <ArticleList />
                   </Box>
                   <Box w="8xl">
+                    <Heading mb={20} fontSize={250}>
+                      Sports
+                    </Heading>
                     <ArticleList />
                   </Box>
                 </HStack>
                 <HStack spacing={500} p={100}>
                   <Box w="8xl">
+                    <Heading mb={20} fontSize={250}>
+                      Technology
+                    </Heading>
                     <ArticleList />
                   </Box>
                   <Box w="6xl">
+                    <Heading mb={20} fontSize={250}>
+                      World
+                    </Heading>
                     <ArticleList />
                   </Box>
                 </HStack>
