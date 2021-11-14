@@ -25,6 +25,9 @@ const Home = (): JSX.Element => {
                 width: '100%',
                 height: 'calc(100% - 40px)',
               }}
+              contentStyle={{
+                padding: '400px',
+              }}
             >
               <VStack spacing={500}>
                 <HStack spacing={500} p={100}>

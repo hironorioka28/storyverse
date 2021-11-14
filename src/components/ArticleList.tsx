@@ -13,8 +13,6 @@ import { Curation } from '../apis/types'
 
 const ArticleList = (): JSX.Element => {
   const [curations, setCurations] = useState<Curation[]>()
-  const nordotApiToken = process.env.REACT_APP_NORDOT_API_TOKEN
-  const nordotUnitId = process.env.REACT_APP_BEAUTY_UNIT_ID
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +23,7 @@ const ArticleList = (): JSX.Element => {
     }
 
     fetchData()
-  }, [nordotApiToken, nordotUnitId])
+  }, [])
 
   return (
     <MasonryGrid gap={5} defaultDirection="end" align="justify">
