@@ -11,7 +11,11 @@ import { MasonryGrid } from '@egjs/react-grid'
 import axios from 'axios'
 import { Curation } from '../apis/types'
 
-const ArticleList = (): JSX.Element => {
+type Props = {
+  panning: boolean
+}
+
+const ArticleList = ({ panning }: Props): JSX.Element => {
   const [curations, setCurations] = useState<Curation[]>()
 
   useEffect(() => {
@@ -38,7 +42,19 @@ const ArticleList = (): JSX.Element => {
                     {item.content.title}
                   </Text>
                 ) : (
-                  <LinkOverlay href={item.content.url} isExternal>
+                  <LinkOverlay
+                    href={item.content.url}
+                    isExternal
+                    sx={
+                      panning
+                        ? {
+                            pointerEvents: 'none',
+                          }
+                        : {
+                            pointerEvents: 'auto',
+                          }
+                    }
+                  >
                     {item.content.title}
                   </LinkOverlay>
                 )}
