@@ -30,10 +30,10 @@ const ArticleList = ({ panning }: Props): JSX.Element => {
   }, [])
 
   return (
-    <MasonryGrid gap={5} defaultDirection="end" align="justify">
+    <MasonryGrid gap={16} defaultDirection="end" align="justify">
       {curations ? (
         curations.map((item) => (
-          <LinkBox key={item.id} p={4} w={130} border="1px" borderRadius="base">
+          <LinkBox key={item.id} p={2} w={130} border="1px" borderRadius="base">
             <VStack>
               <Image src={item.content.image_thumb_360} w="full" />
               <Heading fontSize="xs">
