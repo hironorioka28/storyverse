@@ -74,8 +74,8 @@ const Home = (): JSX.Element => {
               <Grid
                 gridTemplateColumns="repeat(2, auto)"
                 gridTemplateRows="repeat(2, auto)"
-                columnGap={500}
-                rowGap={500}
+                columnGap={100}
+                rowGap={100}
               >
                 {categoryData.map((item, index) => (
                   <GridItem
